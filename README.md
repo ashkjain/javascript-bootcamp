@@ -15,7 +15,7 @@ Given an exisiting code below, can your write some code so that their values are
 let a = "3";
 let b = "8";
 ```
-So when the code runs the output should be ` a is 8` and `b is 3`. Do not change the code:-
+So when the code runs the output should be `a is 8` and `b is 3`. Do not change the code:-
 ```
 function test()
 {
@@ -37,3 +37,5 @@ let c = b
 b = a
 a = c
 ```
+
+## 4. Naming and Naming Conventions for Javascript Variables:-
