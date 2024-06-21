@@ -1,1 +1,9 @@
 # javascript-bootcamp
+
+## 1. Javascript Alerts:-
+Javascript can run staright into Web Browser, to do that we just simply have to open developer tools and in those tools find console and start writing javascript. Let's begin with this code: `alert("hello");`, what this code will do upon run is, it will open an alert in the browser, and the parameter or the prompt that we passed will show to represt what is the message of the alert. To write multiline code in the console since you can write on line at a time because it will run the script upon enter what you can do is use this combination `Shift + Enter` and this will let you antoher line of code, even after termination of the code. But this can be tedious if you want to run or test some code in Javascript on browser, so there is a solution in the tools, Go to Tab called `Sources` and find `Snippets` in that tab, there you can create a new file ending with `.js` and put your code there, and to run it, there is a play button or it will say run snippet click on that to run your JS file.
+
+## 2. Data Types:-
+As any other programming language Javascript also have data types that gives a program meaning. The first data type is String, string is always encoded or stays in between quotation marks it could be either "some string" or 'string'. This is just a text if it is outside any meaningful function or anything that is defined or can be defined by Javascript, but when it is coded inside a function it becomes a string, like the function we saw earlier called `alert('some string')`. There are also numbers, boolean (true, false). Lets take a look at this in code, `2+3;` or `alert(2+3);`. There is also one more function that helps us to know what type of data we are dealing with. For example this will return 'number' `typeof(123)`, this will return 'string' `typeof("Hello")` , and this will return 'boolean' `typeof(true)`.
+
+## 3. Javascript Variables:-
