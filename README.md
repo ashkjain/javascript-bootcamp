@@ -45,3 +45,22 @@ let myName = "Ashish";
 let auibfuiasdbf = "Ashish";
 ```
 Both variables are perfectly fine, but what is the difference between these two, first one is meaningful and refers to the name, but second one has no meaning but it is a perfectly fine variable. Our variables should have meaning so we can realte and make our program more useful.
+Apart from this there are few more rules you cannot call your variable as a reserved words, like:`var`,`let`,`const`. Another rule, your variable name cannot begin with number, like: `1name`, or `324`. More rules, you cannot have a space between your variables like: `my name` this would be illegal, but what you can do instead, you can put underscore `_` instead like this: `my_name`. Last but not least, a variable can only contains, letters, numbers, dollar sign, and an underscore, here is the example: `my_name`, `his_name1`, `_yourMoney123$`.
+
+## Quiz 1:
+* Q.1: Which variable is not valid in Javascript?
+a: `var myage = 12;`
+b: `var my age = 12`
+c: `var myAge = 12`
+d: `var my_age = 12`
+
+* Q.2: Which is the best name for a Javascript variable that will represent student 1's score?
+a: `1studentScore`
+b: `s1Score`
+c: `studenonescore`
+d: `student1Score`
+
+* Answer: 1: b, 2: d
+
+
+## 5. String Concatenation
