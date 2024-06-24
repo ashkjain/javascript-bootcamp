@@ -39,3 +39,9 @@ a = c
 ```
 
 ## 4. Naming and Naming Conventions for Javascript Variables:-
+When naming variables we have to be careful what name we are using, Javascript does not care what is the name of the variable although there are few rules, but if your variable name has no meaning, you might not be able to get most out of it. For example:
+```
+let myName = "Ashish";
+let auibfuiasdbf = "Ashish";
+```
+Both variables are perfectly fine, but what is the difference between these two, first one is meaningful and refers to the name, but second one has no meaning but it is a perfectly fine variable. Our variables should have meaning so we can realte and make our program more useful.
