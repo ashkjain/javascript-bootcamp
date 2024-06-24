@@ -52,12 +52,12 @@ Apart from this there are few more rules you cannot call your variable as a rese
 a: `var myage = 12;` \
 b: `var my age = 12` \
 c: `var myAge = 12` \
-d: `var my_age = 12` \
+d: `var my_age = 12`
 
-* Q.2: Which is the best name for a Javascript variable that will represent student 1's score?
-a: `1studentScore`
-b: `s1Score`
-c: `studenonescore`
+* Q.2: Which is the best name for a Javascript variable that will represent student 1's score? \
+a: `1studentScore` \
+b: `s1Score` \
+c: `studenonescore` \
 d: `student1Score`
 
 * Answer: 1: b, 2: d
