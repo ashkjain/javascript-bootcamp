@@ -60,7 +60,7 @@ b: `s1Score` \
 c: `studenonescore` \
 d: `student1Score`
 
-* Answer: 1: b, 2: d
+* Answer: (1: b), (2: d)
 
 
 ## 5. String Concatenation
