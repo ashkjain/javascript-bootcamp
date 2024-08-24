@@ -60,8 +60,3 @@ x = s.split(' ');
 console.log(x);
 
 
-const myString = 'developer';
-let rest = myString.slice(1);
-let first = myString[0].toUpperCase();
-let myNewString = first+rest;
-console.log(myNewString);
