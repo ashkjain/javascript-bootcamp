@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS Routing</title>
+    <style>
+        nav a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" data-link>Home</a>
+        <a href="/about" data-link>About</a>
+        <a href="/contact" data-link>Contact</a>
+    </nav>
+
+    <div id="app"></div>
+
+    <script>
+        // Components for different views
+        function Home() {
+            return `<h1>Home Page</h1>`;
+        }
+
+        function About() {
+            return `<h1>About Page</h1>`;
+        }
+
+        function Contact() {
+            return `<h1>Contact Page</h1>`;
+        }
+
+        // Routes - Mapping URLs to components
+        const routes = {
+            '/': Home,
+            '/about': About,
+            '/contact': Contact
+        };
+
+        // Router function to render views based on the current URL
+        function router() {
+            const path = window.location.pathname;
+            const view = routes[path] || Home; // Default to Home if route not found
+            document.getElementById('app').innerHTML = view();
+        }
+
+        // Handle click events on links with data-link attribute
+        document.addEventListener('click', function(event) {
+            if (event.target.matches('[data-link]')) {
+                event.preventDefault(); // Prevent full page reload
+                history.pushState(null, '', event.target.href); // Update URL
+                router(); // Load the correct view
+            }
+        });
+
+        // Listen to the popstate event to handle back/forward navigation
+        window.addEventListener('popstate', router);
+
+        // Initial load
+        window.addEventListener('load', router);
+    </script>
+</body>
+</html>
