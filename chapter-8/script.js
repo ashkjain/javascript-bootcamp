@@ -82,8 +82,30 @@ function checkUI()
 }
 // Function to Clear UI
 
+// Function to Filter Items
+function filterItems(e)
+{
+    const filter= e.target.value;
+    const itemCount = itemList.childElementCount - 1;
+    for(let i = 0; i <= itemCount; i++)
+    {
+        let itemsContent = itemList.children[i].textContent.trim();
+        if(filter.toLowerCase() !== itemsContent.slice(0,filter.length).toLowerCase())
+        {   
+            itemList.children[i].style.display = 'none';
+        }
+        else
+        {
+            itemList.children[i].style.display = '';
+        }
+    }
+}
+// Function to Filter Items
+
 // Event Listeners
 itemForm.addEventListener('submit', addItems);
 itemList.addEventListener('click', removeItem);
 clearButton.addEventListener('click', clearAllItems);
 checkUI();
+
+itemFilter.addEventListener('input',filterItems)
