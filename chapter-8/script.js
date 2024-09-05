@@ -7,8 +7,7 @@ const itemFilter = document.getElementById('filter');
 
 
 // Functions to Add Items
-function disaplyItems(e)
-{
+function disaplyItems(e) {
     const itemsFromStorage = getItemFromStorage();
     itemsFromStorage.forEach(item => addItemToDOM(item))
     checkUI();
@@ -33,8 +32,7 @@ function addItems(e) {
     itemInput.value = '';
 };
 
-function addItemToDOM(item)
-{
+function addItemToDOM(item) {
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(item));
 
@@ -43,15 +41,14 @@ function addItemToDOM(item)
 
     itemList.appendChild(li);
 }
-function addItemToStorage(item)
-{
+function addItemToStorage(item) {
     const itemsFromStorage = getItemFromStorage();
     // Add new item to Array
     itemsFromStorage.push(item);
 
     // COnvert To JSON Strig and set to local storage
 
-    localStorage.setItem('items',JSON.stringify(itemsFromStorage));
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 }
 
 function createButton(classes) {
@@ -68,15 +65,12 @@ function createIcon(classes) {
     return icon;
 };
 
-function getItemFromStorage()
-{
+function getItemFromStorage() {
     let itemsFromStorage;
-    if(localStorage.getItem('items') === null)
-    {
+    if (localStorage.getItem('items') === null) {
         itemsFromStorage = [];
     }
-    else
-    {
+    else {
         itemsFromStorage = JSON.parse(localStorage.getItem('items'));
     }
     return itemsFromStorage;
@@ -84,40 +78,57 @@ function getItemFromStorage()
 // Functions to Add Items
 
 // Function to Remove Item
-function removeItem(e) {
+function onClickRemove(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
-        if(confirm('Are You Sure?'))
-        {
-            e.target.parentElement.parentElement.remove();
+        removeItem(e.target.parentElement.parentElement);
+    }
+}
 
-            checkUI();
-        }
+function removeItem(item) {
+
+    if (confirm('Are You Sure?')) {
+
+        // Remove from DOM
+        item.remove();
+
+        // Remove item from Storage
+        removeItemFromStorage(item.textContent)
+        checkUI();
     };
 };
+
+function removeItemFromStorage(item) {
+    let itemsFromStorage = getItemFromStorage();
+
+    // FIlter our item to be removed
+    itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+    // Reset to localstorage
+
+    localStorage.setItem('items', JSON.stringify(itemsFromStorage));
+}
 // Function to Remove Item
 
 // Function to Remove All Items
-function clearAllItems(e)
-{
-    while(itemList.firstChild)
-        {
-            itemList.removeChild(itemList.firstChild);
-        };
-        checkUI();
+function clearAllItems(e) {
+    while (itemList.firstChild) {
+        itemList.removeChild(itemList.firstChild);
     };
+
+    // Clear from localStorage
+    localStorage.removeItem('items');
+    checkUI();
+};
 // Function to Remove All Items
-    
+
 // Function to Clear UI
-function checkUI()
-{
+function checkUI() {
     const items = document.querySelectorAll('li');
-    if(items.length === 0)
-    {
+    if (items.length === 0) {
         clearButton.style.display = 'none';
         itemFilter.style.display = 'none';
     }
-    else
-    {
+    else {
         clearButton.style.display = 'block';
         itemFilter.style.display = 'block';
     }
@@ -125,51 +136,30 @@ function checkUI()
 // Function to Clear UI
 
 // Function to Filter Items
-function filterItems(e)
-{
-    // My Function
-    /* const filter= e.target.value;
-    const itemCount = itemList.childElementCount - 1;
-    for(let i = 0; i <= itemCount; i++)
-    {
-        let itemsContent = itemList.children[i].textContent.trim();
-        if(filter.toLowerCase() !== itemsContent.slice(0,filter.length).toLowerCase())
-        {   
-            itemList.children[i].style.display = 'none';
-        }
-        else
-        {
-            itemList.children[i].style.display = '';
-        }
-    } */
+function filterItems(e) {
+    const items = itemList.querySelectorAll('li');
+    const text = e.target.value.toLowerCase();
+    items.forEach((item) => {
+        const itemName = item.firstChild.textContent.toLowerCase();
 
-        // Tutorial Function
-        const items = itemList.querySelectorAll('li');
-        const text = e.target.value.toLowerCase();
-        items.forEach((item) => {
-            const itemName = item.firstChild.textContent.toLowerCase();
-
-            if(itemName.indexOf(text) != -1)
-            {
-                item.style.display = 'flex';
-            }
-            else
-            {
-                item.style.display = 'none';
-            }
-        })
+        if (itemName.indexOf(text) != -1) {
+            item.style.display = 'flex';
+        }
+        else {
+            item.style.display = 'none';
+        }
+    })
 }
 // Function to Filter Items
 
 // Initialize app
-function init()
-{
+function init() {
 
     itemForm.addEventListener('submit', addItems);
-    itemList.addEventListener('click', removeItem);
+    itemList.addEventListener('click', onClickRemove);
     clearButton.addEventListener('click', clearAllItems);
-    itemFilter.addEventListener('input',filterItems)
-    document.addEventListener('DOMContentLoaded',disaplyItems)   
+    itemFilter.addEventListener('input', filterItems)
+    document.addEventListener('DOMContentLoaded', disaplyItems)
     checkUI();
 }
 init();
