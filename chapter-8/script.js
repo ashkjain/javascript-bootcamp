@@ -14,18 +14,46 @@ function addItems(e) {
         alert('Please add an item');
         return
     };
-    const li = document.createElement('li');
-    li.appendChild(document.createTextNode(newItem));
+    // Create Item DOM Element
+    addItemToDOM(newItem);
 
-    const button = createButton('remove-item btn-link text-red');
-    li.appendChild(button);
-
-    itemList.appendChild(li);
+    // Add item to localstorage
+    addItemToStorage(newItem);
 
     checkUI();
 
     itemInput.value = '';
 };
+
+function addItemToDOM(item)
+{
+    const li = document.createElement('li');
+    li.appendChild(document.createTextNode(item));
+
+    const button = createButton('remove-item btn-link text-red');
+    li.appendChild(button);
+
+    itemList.appendChild(li);
+}
+function addItemToStorage(item)
+{
+    let itemsFromStorage;
+    if(localStorage.getItem('items') === null)
+    {
+        itemsFromStorage = [];
+    }
+    else
+    {
+        itemsFromStorage = JSON.parse(localStorage.getItem('items'));
+    }
+    // Add new item to Array
+    itemsFromStorage.push(item);
+
+    // COnvert To JSON Strig and set to local storage
+
+    localStorage.setItem('items',JSON.stringify(itemsFromStorage));
+}
+
 function createButton(classes) {
     const button = document.createElement('button');
     button.className = classes;
@@ -85,7 +113,8 @@ function checkUI()
 // Function to Filter Items
 function filterItems(e)
 {
-    const filter= e.target.value;
+    // My Function
+    /* const filter= e.target.value;
     const itemCount = itemList.childElementCount - 1;
     for(let i = 0; i <= itemCount; i++)
     {
@@ -98,7 +127,23 @@ function filterItems(e)
         {
             itemList.children[i].style.display = '';
         }
-    }
+    } */
+
+        // Tutorial Function
+        const items = itemList.querySelectorAll('li');
+        const text = e.target.value.toLowerCase();
+        items.forEach((item) => {
+            const itemName = item.firstChild.textContent.toLowerCase();
+
+            if(itemName.indexOf(text) != -1)
+            {
+                item.style.display = 'flex';
+            }
+            else
+            {
+                item.style.display = 'none';
+            }
+        })
 }
 // Function to Filter Items
 
