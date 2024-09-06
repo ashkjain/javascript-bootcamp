@@ -33,6 +33,14 @@ function addItems(e) {
         itemToEdit.remove();
         isEditMode = false;
     }
+    else
+    {
+        if(checkIfItemExists(newItem))
+        {
+            alert('That item already exists!');
+            return;
+        }
+    }
 
 
     // Create Item DOM Element
@@ -100,6 +108,13 @@ function onClickRemove(e) {
     {
         setItemToEdit(e.target);
     }
+}
+
+function checkIfItemExists(item)
+{
+    const itemsFromStorage = getItemFromStorage();
+    
+    return itemsFromStorage.includes(item);
 }
 
 function setItemToEdit(item)
