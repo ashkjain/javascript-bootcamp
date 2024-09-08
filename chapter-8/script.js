@@ -25,18 +25,15 @@ function addItems(e) {
     };
 
     // Check for Edit mode
-    if(isEditMode)
-    {
+    if (isEditMode) {
         const itemToEdit = itemList.querySelector('.edit-mode');
         removeItemFromStorage(itemToEdit.textContent);
         itemToEdit.classList.remove('edit-mode');
         itemToEdit.remove();
         isEditMode = false;
     }
-    else
-    {
-        if(checkIfItemExists(newItem))
-        {
+    else {
+        if (checkIfItemExists(newItem)) {
             alert('That item already exists!');
             return;
         }
@@ -104,21 +101,18 @@ function onClickRemove(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
         removeItem(e.target.parentElement.parentElement);
     }
-    else
-    {
+    else {
         setItemToEdit(e.target);
     }
 }
 
-function checkIfItemExists(item)
-{
+function checkIfItemExists(item) {
     const itemsFromStorage = getItemFromStorage();
-    
+
     return itemsFromStorage.includes(item);
 }
 
-function setItemToEdit(item)
-{
+function setItemToEdit(item) {
     isEditMode = true;
 
     itemList.querySelectorAll('li').forEach((i) => i.classList.remove('edit-mode'));
