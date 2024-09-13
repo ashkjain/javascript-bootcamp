@@ -1,3 +1,4 @@
+
 function getData(endpoint)
 {
     return new Promise((resolve, reject) => 
@@ -28,8 +29,13 @@ function getData(endpoint)
         
 };
 
-getData('./actors.json')
+const moviesPromise = getData('./movies.json');
+const actorsPromise = getData('./actors.json');
+const directorsPromise = getData('./directors.json');
+
+Promise.all([moviesPromise,actorsPromise, directorsPromise])
     .then((data) => 
-    {
-        console.log(data);
-    });
+        {
+            console.log(data);
+        })
+    .catch((error) => console.log(error));
