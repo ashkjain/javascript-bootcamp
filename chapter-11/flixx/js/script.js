@@ -12,11 +12,28 @@ async function fetchAPIData(endpoint) {
     const API_KEY = '96a295ed5e51ddb6255b1ba01f334994';
     const API_URL = 'https://api.themoviedb.org/3/';
 
+    showSpinner();
+
     const response = await fetch(`${API_URL}${endpoint}?api_key=${API_KEY}&language=en-US`);
     const data = await response.json();
+
+    hideSpinner();
+    
     return data;
 }
 // Fetch Function
+
+// Spinner that will be embedded in FetchiApi function so it runs whenever the API call has been made
+// Spinner Function
+function showSpinner()
+{
+    document.querySelector('.spinner').classList.add('show');
+}
+function hideSpinner()
+{
+    document.querySelector('.spinner').classList.remove('show');
+}
+// Spinner Function
 
 // Function to receive Popular Movies using FetchAPIData function (Will be used on Main Page)
 // Display Popular Movies
@@ -49,6 +66,7 @@ async function displayPopularMovies() {
     })
 };
 // Display Popular Movies
+
 
 
 // Higlight active link function
