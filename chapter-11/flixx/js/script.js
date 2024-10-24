@@ -74,6 +74,9 @@ async function displayMovieDetails()
   const movieId = window.location.search.split('=')[1];
   const movie = await fetchAPIData(`movie/${movieId}`);
 
+  // Overlay for Background Image
+  displayBackdropImage('movie', movie.backdrop_path);
+
   const div = document.createElement('div');
   div.innerHTML = `
   <div class="details-top">
@@ -121,6 +124,36 @@ async function displayMovieDetails()
         document.querySelector('#movie-details').appendChild(div);
 }
 // Display Movie Details
+
+// This function will be used to add backdrop image on both Movies and Tv Show details pages
+// Display Backdrop Image
+function displayBackdropImage(type, imagePath)
+{
+  const overlayDiv = document.createElement('div');
+  overlayDiv.style.backgroundImage = `url(https://image.tmdb.org/t/p/original/${imagePath})`;
+
+  overlayDiv.style.backgroundSize = 'cover';
+  overlayDiv.style.backgroundPosition = 'center';
+  overlayDiv.style.backgroundRepeat = 'no-repeat';
+  overlayDiv.style.height = '100vh';
+  overlayDiv.style.width = '100vw';
+  overlayDiv.style.position = 'fixed';
+  overlayDiv.style.top = '0';
+  overlayDiv.style.left = '0';
+  overlayDiv.style.zIndex = '-1';
+  overlayDiv.style.opacity = '0.2';
+
+  if(type === 'movie')
+  {
+    document.querySelector('#movie-details').appendChild(overlayDiv);
+  }
+  else
+  {
+    document.querySelector('#show-details').appendChild(overlayDiv);
+  };
+};
+// Display Backdrop Image
+
 
 // This function will add commas to the number that are shown in the details page for budget and revenue
 // Add Commas to Number
